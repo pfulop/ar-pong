@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>83320983573-f793l0neufo77jofcl9vg264hbgdunhg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.83320983573-f793l0neufo77jofcl9vg264hbgdunhg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB1tG0txsMsh0AsRyoYlp1e4bSBZjI0qR0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>83320983573</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.gday.ar-pong</string>
+	<key>PROJECT_ID</key>
+	<string>ar-pong-1c162</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ar-pong-1c162.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:83320983573:ios:09131a37404cf5a9007e1c</string>
+	<key>DATABASE_URL</key>
+	<string>https://ar-pong-1c162.firebaseio.com</string>
+</dict>
+</plist>
