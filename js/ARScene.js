@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { StyleSheet } from "react-native";
 
-import { ViroARScene, ViroText, ViroConstants } from "react-viro";
+import { ViroARScene, ViroBox, ViroConstants, ViroARPlane } from "react-viro";
 
 export default class ARScene extends Component {
   constructor() {
@@ -20,12 +20,9 @@ export default class ARScene extends Component {
   render() {
     return (
       <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <ViroText
-          text={this.state.text}
-          scale={[0.5, 0.5, 0.5]}
-          position={[0, 0, -1]}
-          style={styles.helloWorldTextStyle}
-        />
+        <ViroARPlane minHeight={0.5} minWidth={0.5} alignment={"Horizontal"}>
+          <ViroBox position={[0, 0.25, 0]} scale={[0.5, 0.5, 0.5]} />
+        </ViroARPlane>
       </ViroARScene>
     );
   }
