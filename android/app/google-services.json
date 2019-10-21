@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "83320983573",
+    "firebase_url": "https://ar-pong-1c162.firebaseio.com",
+    "project_id": "ar-pong-1c162",
+    "storage_bucket": "ar-pong-1c162.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:83320983573:android:53af4e97bce3311e007e1c",
+        "android_client_info": {
+          "package_name": "com.gdays.arpong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "83320983573-9jlaljdeufriq6sfhq8ruc1fp4n4qhjt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDU7JJWpcb7mZmazTC8w4ZqN7cyDEKGJHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "83320983573-9jlaljdeufriq6sfhq8ruc1fp4n4qhjt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "83320983573-f793l0neufo77jofcl9vg264hbgdunhg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gday.ar-pong"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
