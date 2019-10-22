@@ -14,6 +14,6 @@ import ARScene from "./js/ARScene";
 
 export default class ViroSample extends Component {
   render() {
-    return <ViroARSceneNavigator initialScene={{ scene: ARScene }} />;
+    return <ViroARSceneNavigator initialScene={{ scene: ARScene }} autofocus hdrEnabled />;
   }
 }
