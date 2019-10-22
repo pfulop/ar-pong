@@ -31,15 +31,29 @@ export default class ARScene extends Component {
   constructor() {
     super();
 
-    // Set initial state here
     this.state = {
       paddleAZ: 0,
       paddleBZ: 0,
     };
 
+<<<<<<< HEAD
     maxZ = () => DIMENSIONS.playgroundLength / 2 - DIMENSIONS.paddleLength / 2;
     minZ = () =>
       -(DIMENSIONS.playgroundLength / 2) + DIMENSIONS.paddleHeight / 2;
+=======
+    maxZ = () => (DIMENSIONS.playgroundLength / 2) - (DIMENSIONS.paddleLength / 2);
+    minZ = () => -maxZ();
+
+    setInterval(() => {
+      let randomAZ = Math.random() * (maxZ() - minZ()) + minZ();
+      let randomBZ = Math.random() * (maxZ() - minZ()) + minZ();
+
+      this.setState({
+        paddleAZ: randomAZ,
+        paddleBZ: randomBZ
+      });
+    }, 500);
+>>>>>>> 46b65b6f0fa3a05ab6efd05e326428c9d777aca7
 
     // bind 'this' to functions
     this._onInitialized = this._onInitialized.bind(this);
