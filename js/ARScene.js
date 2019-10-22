@@ -15,6 +15,8 @@ import {
 } from 'react-viro';
 
 import GameActions from './GameActions';
+import {GameContextProvider} from './Context/GameContext';
+import {MasterContextProvider} from './Context/MasterContext';
 
 const DIMENSIONS = {
   playgroundHeight: 0.01,
@@ -56,47 +58,51 @@ export default class ARScene extends Component {
 
   render() {
     return (
-      <ViroARScene onTrackingUpdated={this._onInitialized}>
-        <GameActions />
-        <ViroARImageMarker target={'marker'}>
-          <ViroAmbientLight color={'white'} />
-          <ViroBox
-            position={[0, 0, 0]}
-            height={DIMENSIONS.playgroundHeight}
-            length={DIMENSIONS.playgroundLength}
-            width={DIMENSIONS.playgroundWidth}
-            materials={['grass']}
-          />
-          <ViroBox
-            position={[0, 0, 0.105]}
-            height={DIMENSIONS.borderHeight}
-            length={DIMENSIONS.borderLength}
-            width={DIMENSIONS.playgroundWidth}
-            materials={['white']}
-          />
-          <ViroBox
-            position={[0, 0, -0.105]}
-            height={DIMENSIONS.borderHeight}
-            length={DIMENSIONS.borderLength}
-            width={DIMENSIONS.playgroundWidth}
-            materials={['white']}
-          />
-          <ViroBox
-            position={[-0.245, 0.01, this.state.paddleAZ]}
-            height={DIMENSIONS.paddleHeight}
-            length={DIMENSIONS.paddleLength}
-            width={DIMENSIONS.paddleWidth}
-            materials={['red']}
-          />
-          <ViroBox
-            position={[0.245, 0.01, this.state.paddleBZ]}
-            height={DIMENSIONS.paddleHeight}
-            length={DIMENSIONS.paddleLength}
-            width={DIMENSIONS.paddleWidth}
-            materials={['red']}
-          />
-        </ViroARImageMarker>
-      </ViroARScene>
+      <GameContextProvider>
+        <MasterContextProvider>
+          <ViroARScene onTrackingUpdated={this._onInitialized}>
+            <ViroARImageMarker target={'marker'}>
+              <GameActions />
+              <ViroAmbientLight color={'white'} />
+              <ViroBox
+                position={[0, 0, 0]}
+                height={DIMENSIONS.playgroundHeight}
+                length={DIMENSIONS.playgroundLength}
+                width={DIMENSIONS.playgroundWidth}
+                materials={['grass']}
+              />
+              <ViroBox
+                position={[0, 0, 0.105]}
+                height={DIMENSIONS.borderHeight}
+                length={DIMENSIONS.borderLength}
+                width={DIMENSIONS.playgroundWidth}
+                materials={['white']}
+              />
+              <ViroBox
+                position={[0, 0, -0.105]}
+                height={DIMENSIONS.borderHeight}
+                length={DIMENSIONS.borderLength}
+                width={DIMENSIONS.playgroundWidth}
+                materials={['white']}
+              />
+              <ViroBox
+                position={[-0.245, 0.01, this.state.paddleAZ]}
+                height={DIMENSIONS.paddleHeight}
+                length={DIMENSIONS.paddleLength}
+                width={DIMENSIONS.paddleWidth}
+                materials={['red']}
+              />
+              <ViroBox
+                position={[0.245, 0.01, this.state.paddleBZ]}
+                height={DIMENSIONS.paddleHeight}
+                length={DIMENSIONS.paddleLength}
+                width={DIMENSIONS.paddleWidth}
+                materials={['red']}
+              />
+            </ViroARImageMarker>
+          </ViroARScene>
+        </MasterContextProvider>
+      </GameContextProvider>
     );
   }
 
