@@ -14,12 +14,12 @@ import {
   ViroARPlane,
   ViroMaterials,
   ViroAmbientLight,
-  Viro3DObject
-} from "react-viro";
+  Viro3DObject,
+} from 'react-viro';
 
-const packModel = require("./res/D7-AirHockeyPuck.obj");
-const paddleModel = require("./res/D7-AirHockeyHandle.obj");
-const imageMarker = require("./res/ah.jpg");
+const packModel = require('./res/D7-AirHockeyPuck.obj');
+const paddleModel = require('./res/D7-AirHockeyHandle.obj');
+const imageMarker = require('./res/ah.jpg');
 
 export default class ARScene extends Component {
   constructor() {
@@ -29,13 +29,16 @@ export default class ARScene extends Component {
       paddleAZ: 0,
       paddleBZ: 0,
       playgroundWidth: 1,
-      playgroundLength: 0.5
+      playgroundLength: 0.5,
     };
 
     // TODO: Remove paddle mocked movement
     let paddleLength = parseFloat((this.state.playgroundLength / 3).toFixed(3));
-    maxZ = () => parseFloat((this.state.playgroundLength / 2 - paddleLength / 2).toFixed(3));
-    minZ = () => - maxZ();
+    maxZ = () =>
+      parseFloat(
+        (this.state.playgroundLength / 2 - paddleLength / 2).toFixed(3),
+      );
+    minZ = () => -maxZ();
 
     setInterval(() => {
       let randomAZ = Math.random() * (maxZ() - minZ()) + minZ();
@@ -69,66 +72,156 @@ export default class ARScene extends Component {
     let paddleWidth = playgroundHeight * 4;
 
     // Computable positions
-    let borderAZ = parseFloat((playgroundLength / 2 + borderLength / 2).toFixed(3));
-    let borderBZ = - borderAZ;
+    let borderAZ = parseFloat(
+      (playgroundLength / 2 + borderLength / 2).toFixed(3),
+    );
+    let borderBZ = -borderAZ;
 
     let borderY = (borderHeight - playgroundHeight) / 2;
 
-    let paddleAX = parseFloat((this.state.playgroundWidth / 2 - paddleWidth / 2).toFixed(3));
-    let paddleBX = - paddleAX;
+    let borderCX = parseFloat(
+      (this.state.playgroundWidth / 2 + borderLength / 2).toFixed(3),
+    );
+    let borderDX = -borderCX;
+
+    let paddleAX = parseFloat(
+      (this.state.playgroundWidth / 2 - paddleWidth / 2).toFixed(3),
+    );
+    let paddleBX = -paddleAX;
 
     let paddleY = playgroundHeight;
 
     return (
       <GameContextProvider>
         <MasterContextProvider>
-            <ViroARScene onTrackingUpdated={this._onInitialized}>
-            <ViroARImageMarker target={"marker"}> 
+          <ViroARScene onTrackingUpdated={this._onInitialized}>
+            <ViroARImageMarker target={'marker'}>
               <GameActions />
-              <ViroAmbientLight color={"#FFFFFF"}/>
+              <ViroAmbientLight color={'#FFFFFF'} />
               <ViroBox
                 position={[0, 0, 0]}
                 height={playgroundHeight}
                 length={playgroundLength}
                 width={this.state.playgroundWidth}
-                materials={["white"]}
-                onPinch={this._onPinch} />
+                materials={['white']}
+                onPinch={this._onPinch}
+                physicsBody={{
+                  type: 'Static',
+                  mass: 0,
+                  friction: 0.01,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [
+                      this.state.playgroundWidth,
+                      playgroundHeight,
+                      playgroundLength,
+                    ],
+                  },
+                }}
+              />
               <ViroBox
                 position={[0, borderY, borderAZ]}
                 height={borderHeight}
                 length={borderLength}
                 width={borderWidth}
-                materials={["whiteFilled"]} />
+                materials={['whiteFilled']}
+                physicsBody={{
+                  type: 'Static',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [borderWidth, borderHeight, borderLength],
+                  },
+                }}
+              />
               <ViroBox
                 position={[0, borderY, borderBZ]}
                 height={borderHeight}
                 length={borderLength}
                 width={borderWidth}
-                materials={["whiteFilled"]} />
+                materials={['whiteFilled']}
+                physicsBody={{
+                  type: 'Static',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [borderWidth, borderHeight, borderLength],
+                  },
+                }}
+              />
+              <ViroBox
+                position={[borderCX, borderY, 0]}
+                height={borderHeight}
+                length={playgroundLength}
+                width={borderLength}
+                materials={['whiteFilled']}
+                physicsBody={{
+                  type: 'Static',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [borderLength, borderHeight, playgroundLength],
+                  },
+                }}
+              />
+              <ViroBox
+                position={[borderDX, borderY, 0]}
+                height={borderHeight}
+                length={playgroundLength}
+                width={borderLength}
+                materials={['whiteFilled']}
+                physicsBody={{
+                  type: 'Static',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [borderLength, borderHeight, playgroundLength],
+                  },
+                }}
+              />
               <Viro3DObject
                 ref={this.paddleA}
                 source={paddleModel}
                 position={[paddleAX, paddleY, this.state.paddleAZ]}
-                materials={["red"]} 
-                type={"OBJ"}
+                materials={['red']}
+                type={'OBJ'}
                 rotation={[0, 0, 0]}
-                scale={[.0008, .0008, .0008]}
+                scale={[0.0008, 0.0008, 0.0008]}
               />
               <Viro3DObject
                 source={packModel}
-                position={[0, 0, 0,]}
-                materials={["red"]} 
-                type={"OBJ"}
+                position={[0, 0.3, 0]}
+                materials={['red']}
+                type={'OBJ'}
                 rotation={[0, 0, 0]}
-                scale={[.001, .001, .001]}
+                scale={[0.001, 0.001, 0.001]}
+                physicsBody={{
+                  type: 'Dynamic',
+                  mass: 1,
+                  shape: {
+                    type: 'Box',
+                    params: [0.1, 0.1, 0.1],
+                  },
+                  // force: {value: [0, 0.1, 0]},
+                  // torque: [0, 30, 0],
+                }}
               />
               <Viro3DObject
                 source={paddleModel}
                 position={[paddleBX, paddleY, this.state.paddleBZ]}
-                materials={["red"]} 
-                type={"OBJ"}
+                materials={['red']}
+                type={'OBJ'}
                 rotation={[0, 0, 0]}
-                scale={[.0008, .0008, .0008]}
+                scale={[0.0008, 0.0008, 0.0008]}
               />
             </ViroARImageMarker>
           </ViroARScene>
@@ -149,48 +242,47 @@ export default class ARScene extends Component {
   }
 
   _onPinch(pinchState, scaleFactor, source) {
-
     if (pinchState === 1) {
       this.baseScaleFactor = scaleFactor;
     }
 
     if (pinchState === 2) {
       let diff = scaleFactor - this.baseScaleFactor;
-      let playgroundWidth =  this.state.playgroundWidth + diff;
+      let playgroundWidth = this.state.playgroundWidth + diff;
       playgroundWidth = playgroundWidth < 0.2 ? 0.2 : playgroundWidth;
       this.setState({
         playgroundLength: parseFloat((playgroundWidth / 2).toFixed(3)),
         playgroundWidth,
-        playgroundHeight: parseFloat((playgroundWidth / 100).toFixed(3))
-      })
+        playgroundHeight: parseFloat((playgroundWidth / 100).toFixed(3)),
+      });
       this.baseScaleFactor = scaleFactor;
     }
   }
 }
 
 ViroARTrackingTargets.createTargets({
-  "marker" : {
+  marker: {
     source: imageMarker,
-    orientation: "Up",
-    physicalWidth: 0.08 // real world width in meters
+    orientation: 'Up',
+    physicalWidth: 0.08, // real world width in meters
   },
 });
 
 ViroMaterials.createMaterials({
   white: {
-    lightingModel: "PBR",
-    diffuseColor: "rgb(231,231,231)",
-    blendMode: 'Add'
+    lightingModel: 'PBR',
+    diffuseColor: 'rgb(231,231,231)',
+    blendMode: 'Add',
   },
   whiteFilled: {
-    lightingModel: "PBR",
-    diffuseColor: "rgb(231,231,231)"
+    lightingModel: 'PBR',
+    diffuseColor: 'rgb(231,231,231)',
   },
   red: {
-    lightingModel: "PBR",
-    diffuseColor: "rgb(255,0,0)",
-    diffuseIntensity: 0.5
-  }
+    lightingModel: 'PBR',
+    diffuseColor: 'rgb(255,0,0)',
+    diffuseIntensity: 0.5,
+  },
 });
 
 var styles = StyleSheet.create({
