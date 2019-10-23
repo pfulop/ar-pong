@@ -13,7 +13,7 @@
     "@react-native-firebase/firestore": "^6.0.2",
     "react": "16.9.0",
     "react-native": "0.61.2",
-    "react-viro": "2.17.0"
+    "react-viro": "npm:@iskander508/react-viro@0.61.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
