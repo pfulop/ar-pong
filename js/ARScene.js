@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import GameActions from './GameActions';
 import {GameContextProvider} from './Context/GameContext';
 import {MasterContextProvider} from './Context/MasterContext';
+import Puck from './Puck';
 
 import {
   ViroARScene,
@@ -16,8 +17,8 @@ import {
   ViroAmbientLight,
   Viro3DObject,
 } from 'react-viro';
+import AppState from './AppState';
 
-const packModel = require('./res/D7-AirHockeyPuck.obj');
 const paddleModel = require('./res/D7-AirHockeyHandle.obj');
 const imageMarker = require('./res/ah.jpg');
 
@@ -84,16 +85,18 @@ export default class ARScene extends Component {
     );
     let borderDX = -borderCX;
 
-    let paddleAX = parseFloat(
-      (this.state.playgroundWidth / 2 - paddleWidth / 2).toFixed(3),
-    );
+    let paddleAX =
+      parseFloat(
+        (this.state.playgroundWidth / 2 - paddleWidth / 2).toFixed(3),
+      ) - 0.05;
     let paddleBX = -paddleAX;
 
-    let paddleY = playgroundHeight;
+    let paddleY = playgroundHeight + 0.01;
 
     return (
       <GameContextProvider>
         <MasterContextProvider>
+          <AppState />
           <ViroARScene onTrackingUpdated={this._onInitialized}>
             <ViroARImageMarker target={'marker'}>
               <GameActions />
@@ -196,25 +199,18 @@ export default class ARScene extends Component {
                 type={'OBJ'}
                 rotation={[0, 0, 0]}
                 scale={[0.0008, 0.0008, 0.0008]}
-              />
-              <Viro3DObject
-                source={packModel}
-                position={[0, 0.3, 0]}
-                materials={['red']}
-                type={'OBJ'}
-                rotation={[0, 0, 0]}
-                scale={[0.001, 0.001, 0.001]}
                 physicsBody={{
-                  type: 'Dynamic',
-                  mass: 1,
+                  type: 'Kinematic',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
                   shape: {
                     type: 'Box',
                     params: [0.1, 0.1, 0.1],
                   },
-                  // force: {value: [0, 0.1, 0]},
-                  // torque: [0, 30, 0],
                 }}
               />
+              <Puck />
               <Viro3DObject
                 source={paddleModel}
                 position={[paddleBX, paddleY, this.state.paddleBZ]}
@@ -222,6 +218,16 @@ export default class ARScene extends Component {
                 type={'OBJ'}
                 rotation={[0, 0, 0]}
                 scale={[0.0008, 0.0008, 0.0008]}
+                physicsBody={{
+                  type: 'Kinematic',
+                  mass: 0,
+                  friction: 0,
+                  enable: true,
+                  shape: {
+                    type: 'Box',
+                    params: [0.1, 0.1, 0.1],
+                  },
+                }}
               />
             </ViroARImageMarker>
           </ViroARScene>

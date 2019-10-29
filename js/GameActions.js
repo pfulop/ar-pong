@@ -15,19 +15,6 @@ const GameActions = React.memo(() => {
   const gameContext = React.useContext(GameContext);
   const masterContext = React.useContext(MasterContext);
 
-  React.useEffect(() => {
-    return async () => {
-      const game = {
-        exists: false,
-        slave: false,
-      };
-      await firestore()
-        .collection('game')
-        .doc('currentGame')
-        .set(game);
-    };
-  }, []);
-
   const onTapNew = React.useCallback(() => {
     firestore()
       .collection('game')
