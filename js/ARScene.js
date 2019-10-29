@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import GameActions from './GameActions';
 import {GameContextProvider} from './Context/GameContext';
 import {MasterContextProvider} from './Context/MasterContext';
-import Puck from './Puck';
 import Playground from './components/Playground';
 
 import {
@@ -13,6 +12,8 @@ import {
   ViroAmbientLight,
 } from 'react-viro';
 import AppState from './AppState';
+
+import imageMarker from './res/ah.jpg';
 
 export default class ARScene extends Component {
   constructor() {
@@ -47,8 +48,8 @@ export default class ARScene extends Component {
                 paddleAZ={this.state.paddleAZ}
                 paddleBX={this.state.paddleBX}
                 paddleBZ={this.state.paddleBZ}
-                packX={this.state.packX}
-                packZ={this.state.packZ}
+                puckX={this.state.packX}
+                puckZ={this.state.packZ}
               />
             </ViroARImageMarker>
           </ViroARScene>

@@ -333,15 +333,15 @@ PODS:
     - React-cxxreact (= 0.61.2)
     - React-jsi (= 0.61.2)
     - ReactCommon/jscallinvoker (= 0.61.2)
-  - RNFBApp (6.0.2):
+  - RNFBApp (6.0.3):
     - Firebase/Core (~> 6.8.1)
     - React
-  - RNFBAuth (6.0.2):
+  - RNFBAuth (6.0.3):
     - Firebase/Auth (~> 6.8.1)
     - Firebase/Core (~> 6.8.1)
     - React
     - RNFBApp
-  - RNFBFirestore (6.0.2):
+  - RNFBFirestore (6.0.3):
     - Firebase/Core (~> 6.8.1)
     - Firebase/Firestore (~> 6.8.1)
     - React
@@ -517,9 +517,9 @@ SPEC CHECKSUMS:
   React-RCTText: e3ef6191cdb627855ff7fe8fa0c1e14094967fb8
   React-RCTVibration: fb54c732fd20405a76598e431aa2f8c2bf527de9
   ReactCommon: 5848032ed2f274fcb40f6b9ec24067787c42d479
-  RNFBApp: 32c782583cda2a9d53eac0ca154daf9f4e94f0fd
-  RNFBAuth: 405e85b784f9e12d5e0ca00fed8349148d83a424
-  RNFBFirestore: c9f12990ea9ef49d8faf45470f99fbed4f64fef8
+  RNFBApp: 92ae594c85e82e1e68434049b2a37e1f584cf8b9
+  RNFBAuth: edc2e5986b92f0dfd0076b312caf7871a1646ed8
+  RNFBFirestore: 781a0084ac0f152e859fb150bb3409a522abeee7
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f

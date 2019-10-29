@@ -1,8 +1,8 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {Viro3DObject} from 'react-viro';
-import MasterContext from './Context/MasterContext';
-const packModel = require('./res/D7-AirHockeyPuck.obj');
+import MasterContext from '../Context/MasterContext';
+const packModel = require('../res/D7-AirHockeyPuck.obj');
 
 const Puck = React.memo(() => {
   const masterContext = React.useContext(MasterContext);

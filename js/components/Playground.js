@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { ViroMaterials, ViroBox } from 'react-viro';
+import React, {useState} from 'react';
+import {ViroMaterials, ViroBox} from 'react-viro';
 
-import Pack from './Pack';
+import Puck from './Puck';
 import Paddle from './Paddle';
 
 const NUMBER_OF_DECIMALS = 3;
 
-const getFloat = (value) => {
+const getFloat = value => {
   return parseFloat(value.toFixed(NUMBER_OF_DECIMALS));
 };
 
 const onPinch = (pinchState, scaleFactor, source, scale, setScale) => {
-    setScale(scale * scaleFactor);
+  setScale(scale * scaleFactor);
 };
 
-const Playground = (props) => {
-  const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, packX, packZ} = props;
-  const [scale, setScale] = useState(1)
+const Playground = props => {
+  const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, puckX, puckZ} = props;
+  const [scale, setScale] = useState(1);
 
   const width = getFloat(length * 2);
   const height = getFloat(width / 100);
@@ -24,54 +24,53 @@ const Playground = (props) => {
   const borders = [
     {
       key: 'borderA',
-      width: getFloat(width),
+      width,
       length: getFloat(height * 2),
-      height: () => {
-        getFloat(height * 4);
-      },
+      height: getFloat(height * 4),
       positionX: 0,
-      positionY: getFloat((this.height - height) / 2),
-      positionZ: getFloat(length / 2 + borderLength / 2)
+      positionY: getFloat(height * 1.5),
+      positionZ: getFloat(length / 2 + height),
     },
     {
       key: 'borderB',
-      width: getFloat(width),
+      width,
       length: getFloat(height * 2),
-      height: () => {
-        getFloat(height * 4)
-      },
+      height: getFloat(height * 4),
       positionX: 0,
-      positionY: getFloat((this.height - height) / 2),
-      positionZ: getFloat(-(playgroundLength / 2 + borderLength / 2))
+      positionY: getFloat(height * 1.5),
+      positionZ: -getFloat(length / 2 + height),
     },
     {
       key: 'borderC',
       width: getFloat(height * 2),
-      length: () => {
-        getFloat(length);
-      },
-      height: () => {
-        getFloat(height * 4);
-      },
-      positionX: getFloat((width / 2 + this.length / 2)),
-      positionY: getFloat((this.height - height) / 2),
-      positionZ: getFloat()
+      length: getFloat(length),
+      height: getFloat(height * 4),
+      positionX: -getFloat(width / 2 + height),
+      positionY: getFloat(height * 1.5),
+      positionZ: 0,
     },
     {
       key: 'borderD',
       width: getFloat(height * 2),
-      length: () => {
-        getFloat(length);
-      },
+      length: getFloat(length),
       height: getFloat(height * 4),
-      ppositionX: getFloat(-(width / 2 + this.length)),
-      positionY: getFloat((borderHeight - playgroundHeight) / 2),
-      positionZ: 0
-    }
+      positionX: getFloat(width / 2 + height),
+      positionY: getFloat(height * 1.5),
+      positionZ: 0,
+    },
   ];
 
-  const bordersRender = borders.map((border) => {
-    const {key, positionX, positionY, positionZ, height, width, length} = border;
+  const bordersRender = borders.map(border => {
+    const {
+      key,
+      positionX,
+      positionY,
+      positionZ,
+      height,
+      width,
+      length,
+    } = border;
+
     return (
       <ViroBox
         key={key}
@@ -88,14 +87,14 @@ const Playground = (props) => {
           enable: true,
           shape: {
             type: 'Box',
-            params: [width, height, length]
-          }
+            params: [width, height, length],
+          },
         }}
       />
     );
   });
-
-	return (
+  console.log('shaize', scale);
+  return (
     <>
       <ViroBox
         key={'base'}
@@ -120,27 +119,27 @@ const Playground = (props) => {
       {bordersRender}
       <Paddle
         key={'paddleA'}
-        positionX={getFloat(width / 2)}
+        positionX={getFloat(width / 2 - 0.05)}
         positionY={height}
         positionZ={paddleAZ}
         scaleFactor={scale}
       />
       <Paddle
         key={'paddleB'}
-        positionX={getFloat(-width / 2)}
-        positionY={height}
+        positionX={getFloat(-width / 2 + 0.05)}
+        positionY={height + 0.01}
         positionZ={paddleBZ}
         scaleFactor={scale}
       />
-      <Pack
-        key={'pack'}
-        positionX={packX}
-        positionY={height}
-        positionZ={packZ}
-        scascaleFactorle={scale}
+      <Puck
+        key={'puck'}
+        positionX={puckX}
+        positionY={height + 0.01}
+        positionZ={puckZ}
+        scaleFactor={scale}
       />
     </>
-	);
+  );
 };
 
 ViroMaterials.createMaterials({
@@ -152,7 +151,7 @@ ViroMaterials.createMaterials({
   whiteFilled: {
     lightingModel: 'PBR',
     diffuseColor: 'rgb(231,231,231)',
-  }
+  },
 });
 
 export default Playground;
