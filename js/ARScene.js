@@ -40,7 +40,6 @@ export default class ARScene extends Component {
           <AppState />
           <ViroARScene onTrackingUpdated={this._onInitialized}>
             <ViroARImageMarker target={'marker'}>
-              <GameActions />
               <ViroAmbientLight color={'#FFFFFF'} />
               <Playground
                 length={this.state.playgroundLength}
@@ -51,6 +50,7 @@ export default class ARScene extends Component {
                 puckX={this.state.packX}
                 puckZ={this.state.packZ}
               />
+              <GameActions />
             </ViroARImageMarker>
           </ViroARScene>
         </MasterContextProvider>

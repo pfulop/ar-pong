@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import {ViroMaterials, ViroBox} from 'react-viro';
 
-import Puck from './Puck';
+import PuckMaster from './PuckMaster';
+import PuckSlave from './PuckSlave';
 import Paddle from './Paddle';
+import MasterContext from '../Context/MasterContext';
 
 const NUMBER_OF_DECIMALS = 3;
 
@@ -17,6 +19,8 @@ const onPinch = (pinchState, scaleFactor, source, scale, setScale) => {
 const Playground = props => {
   const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, puckX, puckZ} = props;
   const [scale, setScale] = useState(1);
+
+  const masterContext = React.useContext(MasterContext);
 
   const width = getFloat(length * 2);
   const height = getFloat(width / 100);
@@ -93,7 +97,6 @@ const Playground = props => {
       />
     );
   });
-  console.log('shaize', scale);
   return (
     <>
       <ViroBox
@@ -131,13 +134,24 @@ const Playground = props => {
         positionZ={paddleBZ}
         scaleFactor={scale}
       />
-      <Puck
-        key={'puck'}
-        positionX={puckX}
-        positionY={height + 0.01}
-        positionZ={puckZ}
-        scaleFactor={scale}
-      />
+      {masterContext.isMaster && (
+        <PuckMaster
+          key={'puckMaster'}
+          positionX={puckX}
+          positionY={height + 0.01}
+          positionZ={puckZ}
+          scaleFactor={scale}
+        />
+      )}
+      {!masterContext.isMaster && (
+        <PuckSlave
+          key={'puckSlave'}
+          positionX={puckX}
+          positionY={height + 0.01}
+          positionZ={puckZ}
+          scaleFactor={scale}
+        />
+      )}
     </>
   );
 };
