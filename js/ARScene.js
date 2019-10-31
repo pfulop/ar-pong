@@ -14,6 +14,7 @@ import {
 import AppState from './AppState';
 
 import imageMarker from './res/ah.jpg';
+import LocalCoordinatesContext from './Context/LocalCoordinatesContext';
 
 export default class ARScene extends Component {
   constructor() {
@@ -39,7 +40,10 @@ export default class ARScene extends Component {
         <MasterContextProvider>
           <AppState />
           <ViroARScene onTrackingUpdated={this._onInitialized}>
-            <ViroARImageMarker target={'marker'}>
+            <ViroARImageMarker
+              onAnchorFound={this._onAnchorFound}
+              onAnchorUpdated={this._onAnchorFound}
+              target={'marker'}>
               <ViroAmbientLight color={'#FFFFFF'} />
               <Playground
                 length={this.state.playgroundLength}
@@ -66,10 +70,17 @@ export default class ARScene extends Component {
     }
   }
 
-  _onAnchorFound() {
-    // Implement handler
+  _onAnchorFound(anchor) {
+    const [x, y, z] = anchor.position;
+    this.context.setPlaygroundCoordinates({
+      x,
+      y,
+      z,
+    });
   }
 }
+
+ARScene.contextType = LocalCoordinatesContext;
 
 ViroARTrackingTargets.createTargets({
   marker: {

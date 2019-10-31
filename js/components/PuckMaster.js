@@ -1,13 +1,15 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {Viro3DObject} from 'react-viro';
+import LocalCoordinates from '../Context/LocalCoordinatesContext';
 const packModel = require('../res/D7-AirHockeyPuck.obj');
 
 const Puck = React.memo(() => {
   const puckRef = React.useRef();
+  const localCoordinates = React.useContext(LocalCoordinates);
 
   const setPuckPosition = async e => {
-    const [x, y, z] = e;
+    const {x, y, z} = e;
     await firestore()
       .collection('puck')
       .doc('position')
@@ -21,7 +23,9 @@ const Puck = React.memo(() => {
   React.useEffect(() => {
     const interval = setInterval(async () => {
       const puckDetail = await puckRef.current.getTransformAsync();
-      await setPuckPosition(puckDetail.position);
+      const [x, y, z] = puckDetail.position;
+      const position = localCoordinates.getLocalCoordinates({x, y, z});
+      await setPuckPosition(position);
     }, 300);
     return () => clearInterval(interval);
   }, []);

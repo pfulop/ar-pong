@@ -1,10 +1,12 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {Viro3DObject} from 'react-viro';
+import LocalCoordinates from '../Context/LocalCoordinatesContext';
 const packModel = require('../res/D7-AirHockeyPuck.obj');
 
 const Puck = React.memo(() => {
   const [puckPosition, pullPuckPosition] = React.useState([0, 0.3, 0]);
+  const localCoordinates = React.useContext(LocalCoordinates);
 
   React.useEffect(() => {
     const unsubscribe = firestore()
@@ -14,7 +16,8 @@ const Puck = React.memo(() => {
         next: puckSnapshot => {
           const puckPosition = puckSnapshot.data();
           if (puckPosition) {
-            pullPuckPosition([puckPosition.x, puckPosition.y, puckPosition.z]);
+            const position = localCoordinates.setLocalCoordinates(puckPosition);
+            pullPuckPosition([position.x, position.y, position.z]);
           }
         },
       });

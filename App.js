@@ -7,13 +7,22 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-import React, { Component } from "react";
+import React, {Component} from 'react';
 
-import { ViroARSceneNavigator } from "react-viro";
-import ARScene from "./js/ARScene";
+import {ViroARSceneNavigator} from 'react-viro';
+import ARScene from './js/ARScene';
+import {LocalCoordinatesProvider} from './js/Context/LocalCoordinatesContext';
 
 export default class ViroSample extends Component {
   render() {
-    return <ViroARSceneNavigator initialScene={{ scene: ARScene }} autofocus hdrEnabled />;
+    return (
+      <LocalCoordinatesProvider>
+        <ViroARSceneNavigator
+          initialScene={{scene: ARScene}}
+          autofocus
+          hdrEnabled
+        />
+      </LocalCoordinatesProvider>
+    );
   }
 }
