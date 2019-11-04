@@ -88,15 +88,12 @@ const Playground = props => {
           type: 'Static',
           mass: 0,
           friction: 0,
-          enable: true,
-          shape: {
-            type: 'Box',
-            params: [width, height, length],
-          },
+          enable: true
         }}
       />
     );
   });
+  
   return (
     <>
       <ViroBox
@@ -123,9 +120,10 @@ const Playground = props => {
       <Paddle
         key={'paddleA'}
         positionX={getFloat(width / 2 - 0.05)}
-        positionY={height}
+        positionY={height + 0.01}
         positionZ={paddleAZ}
         scaleFactor={scale}
+        maxZ={getFloat(length / 2)}
       />
       <Paddle
         key={'paddleB'}
@@ -133,6 +131,7 @@ const Playground = props => {
         positionY={height + 0.01}
         positionZ={paddleBZ}
         scaleFactor={scale}
+        maxZ={getFloat(length / 2)}
       />
       {masterContext.isMaster && (
         <PuckMaster

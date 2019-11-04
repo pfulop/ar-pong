@@ -37,6 +37,8 @@ target 'gdays' do
   pod 'ViroReact', :path => '../node_modules/react-viro/ios/'
   pod 'ViroKit_static_lib', :path => '../node_modules/react-viro/ios/dist/ViroRenderer/static_lib'
 
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
   target 'gdaysTests' do
     inherit! :search_paths
     # Pods for testing
