@@ -16,7 +16,7 @@ const Puck = React.memo(() => {
         next: puckSnapshot => {
           const puckPosition = puckSnapshot.data();
           if (puckPosition) {
-            const position = localCoordinates.setLocalCoordinates(puckPosition);
+            const position = puckPosition;
 
             pullPuckPosition([position.x, position.y, position.z]);
           }
