@@ -7,7 +7,6 @@ const packModel = require('../res/D7-AirHockeyPuck.obj');
 const Puck = React.memo(() => {
   const puckRef = React.useRef();
   const localCoordinates = React.useContext(LocalCoordinates);
-  const [isEnabled, setIsEnabled] = React.useState(false);
 
   const setPuckPosition = async e => {
     const {x, y, z} = e;
@@ -30,13 +29,8 @@ const Puck = React.memo(() => {
         await setPuckPosition(position);
       }
     }, 300);
-    setTimeout(() => setIsEnabled(true), 1500);
     return () => clearInterval(interval);
   }, []);
-
-  if (!isEnabled) {
-    return null;
-  }
 
   return (
     <Viro3DObject

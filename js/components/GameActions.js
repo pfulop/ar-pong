@@ -2,18 +2,19 @@ import React from 'react';
 import {ViroButton} from 'react-viro';
 import firestore from '@react-native-firebase/firestore';
 
-import newGame from './res/newGame.png';
-import newGamePressed from './res/newGamePressed.png';
-import joinGame from './res/joinGame.png';
-import joinGamePressed from './res/joinGamePressed.png';
-import spectateGame from './res/spectateGame.png';
-import spectateGamePressed from './res/spectateGamePressed.png';
-import GameContext from './Context/GameContext';
-import MasterContext from './Context/MasterContext';
+import newGame from '../res/newGame.png';
+import newGamePressed from '../res/newGamePressed.png';
+import joinGame from '../res/joinGame.png';
+import joinGamePressed from '../res/joinGamePressed.png';
+import spectateGame from '../res/spectateGame.png';
+import spectateGamePressed from '../res/spectateGamePressed.png';
+import GameContext from '../Context/GameContext';
+import MasterContext from '../Context/MasterContext';
 
 const GameActions = React.memo(() => {
   const gameContext = React.useContext(GameContext);
   const masterContext = React.useContext(MasterContext);
+  const [isRoleSelected, setIsRoleSelected] = React.useState(false);
 
   const onTapNew = React.useCallback(() => {
     firestore()
@@ -24,6 +25,7 @@ const GameActions = React.memo(() => {
         slave: false,
       });
     masterContext.setMasterState(true);
+    setIsRoleSelected(false);
   }, []);
 
   const onTapJoin = React.useCallback(async () => {
@@ -34,11 +36,16 @@ const GameActions = React.memo(() => {
         exists: true,
         slave: true,
       });
+    setIsRoleSelected(false);
   }, []);
 
   const onTapSpectate = React.useCallback(() => {
-    //TODO: hide buttons
+    setIsRoleSelected(false);
   }, []);
+
+  if (isRoleSelected) {
+    return null;
+  }
 
   return (
     <>

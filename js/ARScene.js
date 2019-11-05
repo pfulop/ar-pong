@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import GameActions from './GameActions';
+import GameActions from './components/GameActions';
 import {GameContextProvider} from './Context/GameContext';
 import {MasterContextProvider} from './Context/MasterContext';
 import Playground from './components/Playground';
@@ -36,22 +36,20 @@ export default class ARScene extends Component {
     return (
       <GameContextProvider>
         <MasterContextProvider>
-						<AppState />
-						<ViroARScene
-							onTrackingUpdated={this._onInitialized} 
-							>
-							<ViroARImageMarker target={'marker'}>
-								<GameActions />
-								<ViroAmbientLight color={'#FFFFFF'} />
-								<Playground
-									length={this.state.playgroundLength}
-									paddleAZ={this.state.paddleAZ}
-									paddleBZ={this.state.paddleBZ}
-									puckX={this.state.packX}
-									puckZ={this.state.packZ}
-								/>
-							</ViroARImageMarker>
-						</ViroARScene>
+          <AppState />
+          <ViroARScene onTrackingUpdated={this._onInitialized}>
+            <ViroARImageMarker target={'marker'}>
+              <GameActions />
+              <ViroAmbientLight color={'#FFFFFF'} />
+              <Playground
+                length={this.state.playgroundLength}
+                paddleAZ={this.state.paddleAZ}
+                paddleBZ={this.state.paddleBZ}
+                puckX={this.state.packX}
+                puckZ={this.state.packZ}
+              />
+            </ViroARImageMarker>
+          </ViroARScene>
         </MasterContextProvider>
       </GameContextProvider>
     );

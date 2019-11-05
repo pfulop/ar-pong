@@ -6,6 +6,7 @@ import PuckMaster from './PuckMaster';
 import PuckSlave from './PuckSlave';
 import Paddle from './Paddle';
 import MasterContext from '../Context/MasterContext';
+import GameContext from '../Context/GameContext';
 
 const NUMBER_OF_DECIMALS = 3;
 
@@ -20,30 +21,42 @@ const onPinch = (pinchState, scaleFactor, source, scale, setScale) => {
 const Playground = props => {
   const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, puckX, puckZ} = props;
   const [scale, setScale] = useState(1);
+  const [isGameStarted, setIsGame] = useState(false);
 
   const masterContext = React.useContext(MasterContext);
+  const gameContext = React.useContext(GameContext);
 
   const onColide = React.useCallback(async master => {
     if (master) {
-      const score = await firestore
-        .collection('score')
-        .doc('master')
-        .get();
+      const score =
+        (await firestore
+          .collection('score')
+          .doc('master')
+          .get()) || 0;
       await firestore()
         .collection('score')
         .doc('master')
         .set(score + 1);
     } else {
-      const score = await firestore
-        .collection('score')
-        .doc('master')
-        .get();
+      const score =
+        (await firestore
+          .collection('score')
+          .doc('master')
+          .get()) || 0;
       await firestore()
         .collection('score')
         .doc('slave')
         .set(score + 1);
     }
+    setIsGame(false);
+    setTimeout(() => setIsGame(true), 1500);
   });
+
+  React.useEffect(() => {
+    if (gameContext.exists && gameContext.slave) {
+      setIsGame(true);
+    }
+  }, [gameContext, gameContext]);
 
   const width = getFloat(length * 2);
   const height = getFloat(width / 100);
@@ -118,7 +131,6 @@ const Playground = props => {
         onCollision={_onColide}
         physicsBody={{
           type: 'Static',
-          mass: 0,
           friction: 0,
           shape: {
             type: 'Box',
@@ -143,7 +155,6 @@ const Playground = props => {
         // onPinch={() => onPinch(scale, setScale)}
         physicsBody={{
           type: 'Static',
-          mass: 0,
           friction: 0.01,
           shape: {
             type: 'Box',
@@ -168,7 +179,7 @@ const Playground = props => {
         scaleFactor={scale}
         maxZ={getFloat(length / 2)}
       />
-      {masterContext.isMaster && (
+      {masterContext.isMaster && isGameStarted && (
         <PuckMaster
           key={'puckMaster'}
           positionX={puckX}
@@ -177,7 +188,7 @@ const Playground = props => {
           scaleFactor={scale}
         />
       )}
-      {!masterContext.isMaster && (
+      {!masterContext.isMaster && isGameStarted && (
         <PuckSlave
           key={'puckSlave'}
           positionX={puckX}

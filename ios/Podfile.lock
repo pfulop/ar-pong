@@ -346,6 +346,8 @@ PODS:
     - Firebase/Firestore (~> 6.8.1)
     - React
     - RNFBApp
+  - RNGestureHandler (1.5.0):
+    - React
   - ViroKit_static_lib (1.0)
   - ViroReact (1.0)
   - Yoga (1.14.0)
@@ -381,6 +383,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBFirestore (from `../node_modules/@react-native-firebase/firestore`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - ViroKit_static_lib (from `../node_modules/react-viro/ios/dist/ViroRenderer/static_lib`)
   - ViroReact (from `../node_modules/react-viro/ios/`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -464,6 +467,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNFBFirestore:
     :path: "../node_modules/@react-native-firebase/firestore"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
   ViroKit_static_lib:
     :path: "../node_modules/react-viro/ios/dist/ViroRenderer/static_lib"
   ViroReact:
@@ -520,10 +525,11 @@ SPEC CHECKSUMS:
   RNFBApp: 92ae594c85e82e1e68434049b2a37e1f584cf8b9
   RNFBAuth: edc2e5986b92f0dfd0076b312caf7871a1646ed8
   RNFBFirestore: 781a0084ac0f152e859fb150bb3409a522abeee7
+  RNGestureHandler: a4ddde1ffc6e590c8127b8b7eabfdade45475c74
   ViroKit_static_lib: ae9c112ac4b128f8d4466fc581c7b07a0264754d
   ViroReact: 7ec32276dcd1883662b4587eaedfff67f7fc3625
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
-PODFILE CHECKSUM: 1b7bf54c72ae3999860b60032d45bf1881db828e
+PODFILE CHECKSUM: a0630b218783e3c1d993ca136fae22df9927ff22
 
 COCOAPODS: 1.8.4
