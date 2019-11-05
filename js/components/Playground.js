@@ -129,7 +129,7 @@ const Playground = props => {
       <ViroBox
         key={key}
         position={[positionX, positionY, positionZ]}
-        height={height}
+        height={0.05}
         length={length}
         width={width}
         scale={[scale, scale, scale]}
@@ -140,7 +140,7 @@ const Playground = props => {
           friction: 0,
           shape: {
             type: 'Box',
-            params: [width, height, length],
+            params: [width, 0.05, length],
           },
           enable: true,
         }}
