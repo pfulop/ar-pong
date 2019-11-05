@@ -1,6 +1,6 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
-import {Viro3DObject} from 'react-viro';
+import {Viro3DObject, ViroAnimations} from 'react-viro';
 import LocalCoordinates from '../Context/LocalCoordinatesContext';
 const packModel = require('../res/D7-AirHockeyPuck.obj');
 
@@ -17,6 +17,7 @@ const Puck = React.memo(() => {
           const puckPosition = puckSnapshot.data();
           if (puckPosition) {
             const position = localCoordinates.setLocalCoordinates(puckPosition);
+
             pullPuckPosition([position.x, position.y, position.z]);
           }
         },

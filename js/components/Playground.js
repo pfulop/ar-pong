@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {ViroMaterials, ViroBox} from 'react-viro';
+import firestore from '@react-native-firebase/firestore';
 
 import PuckMaster from './PuckMaster';
 import PuckSlave from './PuckSlave';
@@ -21,6 +22,28 @@ const Playground = props => {
   const [scale, setScale] = useState(1);
 
   const masterContext = React.useContext(MasterContext);
+
+  const onColide = React.useCallback(async master => {
+    if (master) {
+      const score = await firestore
+        .collection('score')
+        .doc('master')
+        .get();
+      await firestore()
+        .collection('score')
+        .doc('master')
+        .set(score + 1);
+    } else {
+      const score = await firestore
+        .collection('score')
+        .doc('master')
+        .get();
+      await firestore()
+        .collection('score')
+        .doc('slave')
+        .set(score + 1);
+    }
+  });
 
   const width = getFloat(length * 2);
   const height = getFloat(width / 100);
@@ -75,6 +98,14 @@ const Playground = props => {
       length,
     } = border;
 
+    let _onColide = null;
+    if (key === 'borderC') {
+      _onColide = () => onColide(true);
+    }
+    if (key === 'borderD') {
+      _onColide = () => onColide(false);
+    }
+
     return (
       <ViroBox
         key={key}
@@ -84,11 +115,11 @@ const Playground = props => {
         width={width}
         scale={[scale, scale, scale]}
         materials={['whiteFilled']}
+        onCollision={_onColide}
         physicsBody={{
           type: 'Static',
           mass: 0,
           friction: 0,
-          enable: true,
           shape: {
             type: 'Box',
             params: [width, height, length],
@@ -105,14 +136,13 @@ const Playground = props => {
         height={height}
         length={length}
         width={width}
-        scale={[scale, scale, scale]}
+        // scale={[scale, scale, scale]}
         materials={['white']}
-        onPinch={() => onPinch(scale, setScale)}
+        // onPinch={() => onPinch(scale, setScale)}
         physicsBody={{
           type: 'Static',
           mass: 0,
           friction: 0.01,
-          enable: true,
           shape: {
             type: 'Box',
             params: [width, height, length],
@@ -138,7 +168,7 @@ const Playground = props => {
         <PuckMaster
           key={'puckMaster'}
           positionX={puckX}
-          positionY={height + 0.01}
+          positionY={height + 0.005}
           positionZ={puckZ}
           scaleFactor={scale}
         />
