@@ -171,6 +171,7 @@ const Playground = props => {
       {bordersRender}
       <Paddle
         key={'paddleA'}
+        paddleName={'paddleA'}
         positionX={getFloat(width / 2 - 0.05)}
         positionY={height + 0.01}
         positionZ={paddleAZ}
@@ -179,6 +180,7 @@ const Playground = props => {
       />
       <Paddle
         key={'paddleB'}
+        paddleName={'paddleB'}
         positionX={getFloat(-width / 2 + 0.05)}
         positionY={height + 0.01}
         positionZ={paddleBZ}

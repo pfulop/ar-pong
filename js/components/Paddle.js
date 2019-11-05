@@ -15,13 +15,14 @@ const Paddle = (props) => {
 	const {
 		positionX,
 		positionY,
-		positionZ,
 		scaleFactor,
-		maxZ
+		maxZ,
+		paddleName
 	} = props;
 
-	const controlContext = React.useContext(ControlContext);
 	const scale = SCALE * scaleFactor;
+
+	const controlContext = React.useContext(ControlContext);
 	const paddleRef = React.useRef();
 	const paddleZ = mapNumberRange(controlContext.paddleZ, -60, 60, -maxZ + 0.035, maxZ - 0.035);
 
