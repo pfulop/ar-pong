@@ -1,28 +1,54 @@
-/**
- * Copyright (c) 2017-present, Viro, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
+import React, { Component } from "react";
+import { StyleSheet, View } from "react-native";
+import { ViroARSceneNavigator } from "react-viro";
 
-import React, {Component} from 'react';
+import ARScene from "./js/ARScene";
+import Joystick from './js/components/Joystick';
+import { LocalCoordinatesProvider } from './js/Context/LocalCoordinatesContext';
+import { ControlContextProvider } from './js/Context/ControlContext';
 
-import {ViroARSceneNavigator} from 'react-viro';
-import ARScene from './js/ARScene';
-import {LocalCoordinatesProvider} from './js/Context/LocalCoordinatesContext';
-
-export default class ViroSample extends Component {
+class AiRPong extends Component {
   render() {
     return (
-      <LocalCoordinatesProvider>
-        <ViroARSceneNavigator
-          initialScene={{scene: ARScene}}
-          autofocus
-          hdrEnabled
-        />
-      </LocalCoordinatesProvider>
-    );
+      <>
+        <ControlContextProvider>
+          <View style={styles.arscene}>
+            <LocalCoordinatesProvider>
+              <ViroARSceneNavigator
+                initialScene={{scene: ARScene}}
+                autofocus
+                hdrEnabled
+              />
+            </LocalCoordinatesProvider>
+          </View>
+          <View style={styles.touchpadArea}>
+            <Joystick />
+          </View>
+        </ControlContextProvider>
+      </>
+    )
   }
 }
+
+const styles = StyleSheet.create({
+  arscene: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
+  },
+  touchpadArea: {
+    alignSelf: 'center',
+    position: 'absolute',
+    width: 200,
+    height: 200,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    bottom: '15%',
+    borderRadius: 100,
+    borderColor: "rgba(255,255,255,0.5)",
+    borderWidth: 1
+  },
+});
+
+export default AiRPong;

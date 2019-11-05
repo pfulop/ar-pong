@@ -3,25 +3,33 @@ import {
   ViroMaterials,
   Viro3DObject,
 } from 'react-viro';
+import ControlContext from '../Context/ControlContext';
 
 const paddleModel = require('../res/D7-AirHockeyHandle.obj');
 
 const SCALE = 0.0008;
+
+const mapNumberRange = (inValue, inMin, outMin, inMax, outMax) => (inValue - inMin) * (outMax - inMax) / (outMin - inMin) + inMax;
 
 const Paddle = (props) => {
 	const {
 		positionX,
 		positionY,
 		positionZ,
-		scaleFactor
+		scaleFactor,
+		maxZ
 	} = props;
 
+	const controlContext = React.useContext(ControlContext);
 	const scale = SCALE * scaleFactor;
+	const paddleRef = React.useRef();
+	const paddleZ = mapNumberRange(controlContext.paddleZ, -60, 60, -maxZ + 0.035, maxZ - 0.035);
 
 	return (
 		<Viro3DObject
+			ref={paddleRef}
 			source={paddleModel}
-			position={[positionX, positionY, positionZ]}
+			position={[positionX, positionY, paddleZ]}
 			materials={['red']}
 			type={'OBJ'}
 			rotation={[0, 0, 0]}
