@@ -43,7 +43,7 @@ const Puck = React.memo(() => {
       scale={[0.001, 0.001, 0.001]}
       physicsBody={{
         type: 'Dynamic',
-        mass: 1,
+        mass: 0.01,
         shape: {
           type: 'Box',
           params: [0.1, 0.01, 0.1],

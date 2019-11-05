@@ -31,9 +31,9 @@ export const LocalCoordinatesProvider = React.memo(({children}) => {
   const setLocalCoordinates = React.useCallback(
     ({x, y, z}) => {
       return {
-        x: playgroundCoordinates.x - x,
-        y: playgroundCoordinates.y - y,
-        z: playgroundCoordinates.z - z,
+        x: playgroundCoordinates.x + x,
+        y: playgroundCoordinates.y + y,
+        z: playgroundCoordinates.z + z,
       };
     },
     [playgroundCoordinates],

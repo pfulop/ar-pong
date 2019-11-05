@@ -28,25 +28,31 @@ const Playground = props => {
 
   const onColide = React.useCallback(async master => {
     if (master) {
-      const score =
-        (await firestore
-          .collection('score')
-          .doc('master')
-          .get()) || 0;
+      let newScore = 1;
+      const score = await firestore()
+        .collection('score')
+        .doc('master')
+        .get();
+      if (score) {
+        newScore = score.score + 1;
+      }
       await firestore()
         .collection('score')
         .doc('master')
-        .set(score + 1);
+        .set({score: newScore});
     } else {
-      const score =
-        (await firestore
-          .collection('score')
-          .doc('master')
-          .get()) || 0;
+      let newScore = 1;
+      const score = await firestore()
+        .collection('score')
+        .doc('slave')
+        .get();
+      if (score) {
+        newScore = score.score + 1;
+      }
       await firestore()
         .collection('score')
         .doc('slave')
-        .set(score + 1);
+        .set({score: score + 1});
     }
     setIsGame(false);
     setTimeout(() => setIsGame(true), 1500);
