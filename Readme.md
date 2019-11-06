@@ -5,8 +5,13 @@ Purpose of this repo is to introduce possible options for Google Day 2019. It wa
 ### Table of contents
 
 1. [Augmented Reality](#Augmented-Reality)
-2. [Javascript AR Frameworks / Libraries / Tools](#Javascript-AR-Frameworks-/-Libraries-/-Tools)
-   1. [Suggested framework](#Suggested-framework)
+2. [Javascript AR Frameworks / Libraries / Tools](#javascript-ar-frameworks--libraries--tools)
+   1. [three.js](#threejs)
+   2. [WebXR API](#webxr-api)
+   3. [AR.js](#arjs)
+   4. [React-viro](#react-viro)
+   5. [A-Frame](#a-frame)
+   6. [Suggested framework](#Suggested-framework)
 3. [POC](#POC)
    1. [Playground](#Playground)
    2. [Puck](#Puck)
@@ -53,7 +58,7 @@ We were able to create little POC (playground for an air hockey game and we’re
 VR framework for three.js. It gives support for various VR platforms like HTC Vive, Windows Mixed Reality, Oculus, Daydream, GearVR... It's based on top of HTML, so it's easy to get started and provides declarative, extensible and composabale structure to three.js.
 https://aframe.io/
 
-## Suggested framework
+### Suggested framework
 
 After working with react-viro we suggest the best theme for google day would be creating small and easy game. Since real-time position synchronization of objects in the game is complicated (dare to say currently impossible) we suggest bringing online in a form of competitiveness through maintaining high score table or turn based mechanics.
 
