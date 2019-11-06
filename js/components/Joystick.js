@@ -18,7 +18,7 @@ const Joystick = React.memo(props => {
         (translation >= 1 && translation <= 60) ||
         (translation <= -1 && translation >= -60)
       ) {
-        controlContext.setPaddleZ(translation);
+        controlContext.setPaddleAZ(translation);
       }
     }
   };

@@ -6,25 +6,28 @@ import ARScene from "./js/ARScene";
 import Joystick from './js/components/Joystick';
 import { LocalCoordinatesProvider } from './js/Context/LocalCoordinatesContext';
 import { ControlContextProvider } from './js/Context/ControlContext';
+import { MasterContextProvider } from './js/Context/MasterContext';
 
 class AiRPong extends Component {
   render() {
     return (
       <>
-        <ControlContextProvider>
-          <View style={styles.arscene}>
-            <LocalCoordinatesProvider>
-              <ViroARSceneNavigator
-                initialScene={{scene: ARScene}}
-                autofocus
-                hdrEnabled
-              />
-            </LocalCoordinatesProvider>
-          </View>
-          <View style={styles.touchpadArea}>
-            <Joystick />
-          </View>
-        </ControlContextProvider>
+        <MasterContextProvider>
+          <ControlContextProvider>
+            <View style={styles.arscene}>
+              <LocalCoordinatesProvider>
+                <ViroARSceneNavigator
+                  initialScene={{scene: ARScene}}
+                  autofocus
+                  hdrEnabled
+                />
+              </LocalCoordinatesProvider>
+            </View>
+            <View style={styles.touchpadArea}>
+              <Joystick />
+            </View>
+          </ControlContextProvider>
+        </MasterContextProvider>
       </>
     )
   }

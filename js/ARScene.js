@@ -35,22 +35,20 @@ export default class ARScene extends Component {
   render() {
     return (
       <GameContextProvider>
-        <MasterContextProvider>
-          <AppState />
-          <ViroARScene onTrackingUpdated={this._onInitialized}>
-            <ViroARImageMarker target={'marker'}>
-              <GameActions />
-              <ViroAmbientLight color={'#FFFFFF'} />
-              <Playground
-                length={this.state.playgroundLength}
-                paddleAZ={this.state.paddleAZ}
-                paddleBZ={this.state.paddleBZ}
-                puckX={this.state.packX}
-                puckZ={this.state.packZ}
-              />
-            </ViroARImageMarker>
-          </ViroARScene>
-        </MasterContextProvider>
+        <AppState />
+        <ViroARScene onTrackingUpdated={this._onInitialized}>
+          <ViroARImageMarker target={'marker'}>
+            <GameActions />
+            <ViroAmbientLight color={'#FFFFFF'} />
+            <Playground
+              length={this.state.playgroundLength}
+              paddleAZ={this.state.paddleAZ}
+              paddleBZ={this.state.paddleBZ}
+              puckX={this.state.packX}
+              puckZ={this.state.packZ}
+            />
+          </ViroARImageMarker>
+        </ViroARScene>
       </GameContextProvider>
     );
   }

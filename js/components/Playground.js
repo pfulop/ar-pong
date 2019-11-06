@@ -4,7 +4,8 @@ import firestore from '@react-native-firebase/firestore';
 
 import PuckMaster from './PuckMaster';
 import PuckSlave from './PuckSlave';
-import Paddle from './Paddle';
+import PaddleA from './PaddleA';
+import PaddleB from './PaddleB';
 import MasterContext from '../Context/MasterContext';
 import GameContext from '../Context/GameContext';
 
@@ -15,7 +16,7 @@ const getFloat = value => {
 };
 
 const Playground = props => {
-  const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, puckX, puckZ} = props;
+  const {length, puckX, puckZ} = props;
   const [scale, setScale] = useState(1);
   const [isGameStarted, setIsGame] = useState(false);
 
@@ -163,21 +164,15 @@ const Playground = props => {
         }}
       />
       {bordersRender}
-      <Paddle
-        key={'paddleA'}
-        paddleName={'paddleA'}
+      <PaddleA
         positionX={getFloat(width / 2 - 0.05)}
         positionY={height + 0.01}
-        positionZ={paddleAZ}
         scaleFactor={scale}
         maxZ={getFloat(length / 2)}
       />
-      <Paddle
-        key={'paddleB'}
-        paddleName={'paddleB'}
+      <PaddleB
         positionX={getFloat(-width / 2 + 0.05)}
         positionY={height + 0.01}
-        positionZ={paddleBZ}
         scaleFactor={scale}
         maxZ={getFloat(length / 2)}
       />
@@ -194,7 +189,7 @@ const Playground = props => {
         <PuckSlave
           key={'puckSlave'}
           positionX={puckX}
-          positionY={height + 0.01}
+          positionY={height + 0.005}
           positionZ={puckZ}
           scaleFactor={scale}
         />
