@@ -14,10 +14,6 @@ const getFloat = value => {
   return parseFloat(value.toFixed(NUMBER_OF_DECIMALS));
 };
 
-const onPinch = (pinchState, scaleFactor, source, scale, setScale) => {
-  setScale(scale * scaleFactor);
-};
-
 const Playground = props => {
   const {length, paddleAX, paddleAZ, paddleBX, paddleBZ, puckX, puckZ} = props;
   const [scale, setScale] = useState(1);
@@ -156,9 +152,7 @@ const Playground = props => {
         height={height}
         length={length}
         width={width}
-        // scale={[scale, scale, scale]}
         materials={['white']}
-        // onPinch={() => onPinch(scale, setScale)}
         physicsBody={{
           type: 'Static',
           friction: 0.01,

@@ -6,7 +6,6 @@ const packModel = require('../res/D7-AirHockeyPuck.obj');
 
 const Puck = React.memo(() => {
   const [puckPosition, pullPuckPosition] = React.useState([0, 0.3, 0]);
-  const localCoordinates = React.useContext(LocalCoordinates);
 
   React.useEffect(() => {
     const unsubscribe = firestore()

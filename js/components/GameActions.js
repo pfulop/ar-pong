@@ -25,7 +25,7 @@ const GameActions = React.memo(() => {
         slave: false,
       });
     masterContext.setMasterState(true);
-    setIsRoleSelected(false);
+    setIsRoleSelected(true);
   }, []);
 
   const onTapJoin = React.useCallback(async () => {
@@ -36,11 +36,11 @@ const GameActions = React.memo(() => {
         exists: true,
         slave: true,
       });
-    setIsRoleSelected(false);
+    setIsRoleSelected(true);
   }, []);
 
   const onTapSpectate = React.useCallback(() => {
-    setIsRoleSelected(false);
+    setIsRoleSelected(true);
   }, []);
 
   if (isRoleSelected) {

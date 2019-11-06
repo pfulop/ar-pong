@@ -20,7 +20,6 @@ export const GameContextProvider = React.memo(({children}) => {
           } else {
             gameSnapshot.forEach(documentSnapshot => {
               setGameState(documentSnapshot.data());
-              console.log(documentSnapshot.data());
             });
           }
         },
