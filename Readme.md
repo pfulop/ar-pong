@@ -11,9 +11,9 @@ Purpose of this repo is to introduce possible options for Google Day 2019. It wa
    4. [Issues](#Issues)
       1. [Position](#Position)
       1. [Physics](#Physics)
-      1. [Position transformation](#Positiontransformation)
+      1. [Position transformation](#position-transformation)
 2. [Framworks](#Frameworks)
-   1. [Suggested framework](#suggestedframework)
+   1. [Suggested framework](#Suggested-framework)
 3. [Possible Game Ideas](#Frameworks)
 4. [Pointers](#Pointers)
 
