@@ -25,7 +25,7 @@ const PaddleB = props => {
         next: paddleSnapshot => {
           const paddlePosition = paddleSnapshot.data();
           if (paddlePosition && paddlePosition.position) {
-            console.log('slave', paddlePosition.position)
+            console.log('slave', paddlePosition.position);
             setPaddleBZ(paddlePosition.position);
           }
         },

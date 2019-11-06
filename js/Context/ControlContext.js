@@ -12,16 +12,18 @@ export const ControlContextProvider = React.memo(({children}) => {
   const masterContext = React.useContext(MasterContext);
 
   const setPaddlePosition = async position => {
-		const collectionName = masterContext.isMaster ? 'paddleMaster' : 'paddleSlave';
+    const collectionName = masterContext.isMaster
+      ? 'paddleMaster'
+      : 'paddleSlave';
     await firestore()
       .doc(collectionName + '/position')
       .set({position});
-	};
+  };
 
-	React.useEffect(() => {
+  React.useEffect(() => {
     setPaddlePosition(paddleAZ);
   }, [paddleAZ]);
-  
+
   return (
     <ControlContext.Provider value={{paddleAZ, setPaddleAZ}}>
       {children}

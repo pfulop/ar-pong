@@ -2,20 +2,62 @@
 
 Purpose of this repo is to introduce possible options for Google Day 2019. It walks trough some AR/VR JS frameworks. It also contains example project made in react-viro and it's shortcomings.
 
-# Table of contents
+### Table of contents
 
-1. [POC](#POC)
+1. [Augmented Reality](#Augmented-Reality)
+2. [Javascript AR Frameworks / Libraries / Tools](#Javascript-AR-Frameworks-/-Libraries-/-Tools)
+   1. [Suggested framework](#Suggested-framework)
+3. [POC](#POC)
    1. [Playground](#Playground)
    2. [Puck](#Puck)
    3. [Paddles](#Paddles)
    4. [Issues](#Issues)
       1. [Position](#Position)
-      1. [Physics](#Physics)
-      1. [Position transformation](#position-transformation)
-2. [Framworks](#Frameworks)
-   1. [Suggested framework](#Suggested-framework)
-3. [Possible Game Ideas](#Frameworks)
-4. [Pointers](#Pointers)
+      2. [Physics](#Physics)
+      3. [Position transformation](#position-transformation)
+4. [Possible Game Ideas](#Frameworks)
+5. [Pointers](#Pointers)
+
+## Augmented Reality
+
+Augmented Reality - AR is name for technology that utilises digital representation of real world (camera feed, optical display) and renders contextual 3D graphical information on top of it, it extends it. To be able to do so, AR device needs to understand physical world around it, and it does so through computer vision, depth cameras, and various other sensors. To help device recognizing real world features, we use markers (images we put in real world), location and object recognition.
+
+AR device can be smartphone or standalone headset (Microsoft Holo Lens). On Android, device needs tu support Android AR framework ARCore, while iOS devices use ARKit framework. Those are two most popular AR frameworks on the market, they make the best use of smartphone's hardware capabilities, while ARKit is more advanced from these two feature and performance wise, so we have more atractive AR products for iOS. In this research, we were focusing on JS AR frameworks that wrap these two frameworks to achieve the best results currently possible.
+
+In contrast Virtual Reality - VR is completely virtual world renderd using 3D graphics and fed to user through VR headset (Oculus, Vive, Daydream).
+
+## Javascript AR Frameworks / Libraries / Tools
+
+### three.js
+
+The most popular JS library for 3D graphics, it uses WebGL, it's not AR/VR specific, but it's ofently used in combination with other AR/VR frameworks.
+https://threejs.org/
+
+### WebXR API
+
+Specification in draft stage, future standard, but still unstable, and unsupported by stable versions of browsers. It uses WebGL for rendering, integrates well with three.js. It gives AR/VR compatible device support through browser, so it means that it consumes native ARCore/ARKit API under the hood, it renders 3D scene in appropriate frame rate for device, and gives control support through vector system.
+https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API
+
+### AR.js
+
+The most used and mature Javascript AR library. It doesn’t consume native ARCore/ARKit, it’s powered by ARToolKit, so it has a weaker understanding of physical space. It offers nice rendering options by integrating three.js + jsartoolkit5.
+https://github.com/jeromeetienne/AR.js/blob/master/README.md
+
+### React-viro
+
+The react-native library offers AR and VR capabilities with a physics engine and custom rendering engine on top of it, which means it offers everything out of the box.
+We were able to create little POC (playground for an air hockey game and we’re striving toward multiplayer (which is in progress)). It leverages ARCore and ARKit so you need an Android or iOS device that has support for it (which probably won’t be a problem). Some notes about react-viro:- It’s not fully compatible with latest RN but we found a for that works with 0.61.2- Documentation examples sometimes don’t reflect API (props are mostly named differently)- There’s a strange behavior with plane detection on android devices (but we think it’s simply ARCore having issues retaining information about its position in the real-world)https://github.com/viromedia/viro
+
+### A-Frame
+
+VR framework for three.js. It gives support for various VR platforms like HTC Vive, Windows Mixed Reality, Oculus, Daydream, GearVR... It's based on top of HTML, so it's easy to get started and provides declarative, extensible and composabale structure to three.js.
+https://aframe.io/
+
+## Suggested framework
+
+After working with react-viro we suggest the best theme for google day would be creating small and easy game. Since real-time position synchronization of objects in the game is complicated (dare to say currently impossible) we suggest bringing online in a form of competitiveness through maintaining high score table or turn based mechanics.
+
+From all mentioned frameworks, Viro is the quickest entry to AR world for JS developers (if you like React-Native).
 
 ## POC
 
@@ -51,10 +93,6 @@ The one good thing about react-viro is it’s built in physics engine. However, 
 #### Position transformation
 
 position is relative to the Marker. However, if the method getTransformAsync is used, position is reported relatively to world coordinates. World coordinates have starting point (0 values) in the point where app was open, which means the coordinates if shared with different device need to be recalculated for the new world origin. React-viro doesn’t provide any function that could help with this, so we naively tried to just do simple subtractions to resolve position relative to other object, we didn’t account for rotation differences so to get correct position a transformation matrix needs to be used instead.
-
-## Suggested framework
-
-After working with react-viro we suggest the best theme for google day would be creating small and easy game. Since real-time position synchronization of objects in the game is complicated (dare to say currently impossible) we suggest bringing online in a form of competitiveness trough maintaining high score table.
 
 # Possible Game Ideas
 
