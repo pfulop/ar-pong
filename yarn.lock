@@ -4965,10 +4965,10 @@ react-test-renderer@16.8.3:
     react-is "^16.8.3"
     scheduler "^0.13.3"
 
-"react-viro@npm:@iskander508/react-viro@0.61.2":
-  version "0.61.2"
-  resolved "https://registry.yarnpkg.com/@iskander508/react-viro/-/react-viro-0.61.2.tgz#70aba77e224fc1a493731f625ee4ff7b45a5eb96"
-  integrity sha512-HUK88DToJjXgkk+GPlgLxD1PK6ZngY4+q3WOvByGtwEPIRfEkRlt9nMVjmVS2ZfV9ZsTNtoH2teYk58TYAzppA==
+react-viro@^2.17.0:
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/react-viro/-/react-viro-2.17.0.tgz#2e46dbf33111c79eaa6af58e008b1eb7f900cd00"
+  integrity sha512-5100TePD0X62DRCF1ELOOz/J0b+NJNcQHlppqFW4OHwzxI2ONfSKWAkwooYseinHgSWqe12z5jWf51aF7aHuDQ==
   dependencies:
     prop-types "^15.5.10"
 

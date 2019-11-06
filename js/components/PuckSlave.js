@@ -1,8 +1,7 @@
 import React from 'react';
 import firestore from '@react-native-firebase/firestore';
 import {Viro3DObject} from 'react-viro';
-import LocalCoordinates from '../Context/LocalCoordinatesContext';
-const packModel = require('../res/D7-AirHockeyPuck.obj');
+import packModel from '../res/D7-AirHockeyPuck.obj';
 
 const Puck = React.memo(() => {
   const [puckPosition, pullPuckPosition] = React.useState([0, 0.3, 0]);
