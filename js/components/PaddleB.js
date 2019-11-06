@@ -16,8 +16,8 @@ const PaddleB = props => {
 
   React.useEffect(() => {
     const collectionName = masterContext.isMaster
-      ? 'paddleMaster'
-      : 'paddleSlave';
+      ? 'paddleSlave'
+      : 'paddleMaster';
     const unsubscribe = firestore()
       .doc(collectionName + '/position')
       .onSnapshot({
@@ -25,6 +25,7 @@ const PaddleB = props => {
         next: paddleSnapshot => {
           const paddlePosition = paddleSnapshot.data();
           if (paddlePosition && paddlePosition.position) {
+            console.log('slave', paddlePosition.position)
             setPaddleBZ(paddlePosition.position);
           }
         },

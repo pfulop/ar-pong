@@ -15,7 +15,6 @@ const Puck = React.memo(() => {
           const puckPosition = puckSnapshot.data();
           if (puckPosition) {
             const position = puckPosition;
-
             pullPuckPosition([position.x, position.y, position.z]);
           }
         },

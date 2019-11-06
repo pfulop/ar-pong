@@ -164,18 +164,22 @@ const Playground = props => {
         }}
       />
       {bordersRender}
-      <PaddleA
-        positionX={getFloat(width / 2 - 0.05)}
-        positionY={height + 0.01}
-        scaleFactor={scale}
-        maxZ={getFloat(length / 2)}
-      />
-      <PaddleB
-        positionX={getFloat(-width / 2 + 0.05)}
-        positionY={height + 0.01}
-        scaleFactor={scale}
-        maxZ={getFloat(length / 2)}
-      />
+      {isGameStarted &&
+        <>
+          <PaddleA
+            positionX={getFloat(width / 2 - 0.05)}
+            positionY={height + 0.01}
+            scaleFactor={scale}
+            maxZ={getFloat(length / 2)}
+          />
+          <PaddleB
+            positionX={getFloat(-width / 2 + 0.05)}
+            positionY={height + 0.01}
+            scaleFactor={scale}
+            maxZ={getFloat(length / 2)}
+          />
+        </>
+      }
       {masterContext.isMaster && isGameStarted && (
         <PuckMaster
           key={'puckMaster'}
