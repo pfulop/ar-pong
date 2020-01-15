@@ -4,24 +4,27 @@ Purpose of this repo is to introduce possible options for Google Day 2019. It wa
 
 ### Table of contents
 
-1. [Augmented Reality](#Augmented-Reality)
-2. [Javascript AR Frameworks / Libraries / Tools](#javascript-ar-frameworks--libraries--tools)
-   1. [three.js](#threejs)
-   2. [WebXR API](#webxr-api)
-   3. [AR.js](#arjs)
-   4. [React-viro](#react-viro)
-   5. [A-Frame](#a-frame)
-   6. [Suggested framework](#Suggested-framework)
-3. [POC](#POC)
-   1. [Playground](#Playground)
-   2. [Puck](#Puck)
-   3. [Paddles](#Paddles)
-   4. [Issues](#Issues)
-      1. [Position](#Position)
-      2. [Physics](#Physics)
-      3. [Position transformation](#position-transformation)
-4. [Possible Game Ideas](#Frameworks)
-5. [Pointers](#Pointers)
+- [Google Day POC 2019](#google-day-poc-2019)
+    - [Table of contents](#table-of-contents)
+  - [Augmented Reality](#augmented-reality)
+  - [Javascript AR Frameworks / Libraries / Tools](#javascript-ar-frameworks--libraries--tools)
+    - [three.js](#threejs)
+    - [WebXR API](#webxr-api)
+    - [AR.js](#arjs)
+    - [React-viro](#react-viro)
+    - [A-Frame](#a-frame)
+    - [Suggested framework](#suggested-framework)
+  - [POC](#poc)
+    - [Playground](#playground)
+    - [Puck](#puck)
+    - [Paddles](#paddles)
+    - [Issues](#issues)
+      - [Position](#position)
+      - [Physics](#physics)
+      - [Position transformation](#position-transformation)
+- [Possible Game Ideas](#possible-game-ideas)
+- [Pointers](#pointers)
+- [ANDROID](#android)
 
 ## Augmented Reality
 
@@ -114,3 +117,11 @@ position is relative to the Marker. However, if the method getTransformAsync is 
 - android and iOS have different strengths when it comes to AR (iOS usually can keep up with where in the world you are more easily, android needs more scanning to be done)
 - try to move your phone slower when mapping environment around you (mainly if you want to use plane detection)
 - get familiar with the [physics](https://docs.viromedia.com/docs/physics) engine abilities
+
+# ANDROID
+
+A patched versions of react-viro is required for android devices. 
+
+```yarn add react-viro@npm:@iskander508/react-viro@0.61.2```
+
+furthermore you require a Android device with ARCore support, for a list of supported devices please check [here](https://developers.google.com/ar/discover/supported-devices).
