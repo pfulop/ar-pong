@@ -120,6 +120,8 @@ position is relative to the Marker. However, if the method getTransformAsync is 
 
 # ANDROID
 
-A patched verions of react-viro is required for android devices. 
+A patched versions of react-viro is required for android devices. 
 
 ```yarn add react-viro@npm:@iskander508/react-viro@0.61.2```
+
+furthermore you require a Android device with ARCore support, for a list of supported devices please check [here](https://developers.google.com/ar/discover/supported-devices).
