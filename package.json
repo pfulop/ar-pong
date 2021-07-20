@@ -12,7 +12,7 @@
     "@react-native-firebase/firestore": "^6.0.2",
     "lodash": "^4.17.15",
     "react": "16.9.0",
-    "react-native": "0.61.2",
+    "react-native": "0.62.3",
     "react-native-gesture-handler": "^1.5.0",
     "react-viro": "^2.17.0"
   },
